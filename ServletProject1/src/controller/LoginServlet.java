@@ -1,0 +1,88 @@
+package controller;
+
+import java.io.IOException;
+import java.sql.*;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import model.UserInfo;
+
+@WebServlet(urlPatterns = { "/login" })
+public class LoginServlet extends HttpServlet {
+
+	private static final long serialVersionUID = 1L;
+
+	public LoginServlet() {
+	}
+
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		super.doGet(req, resp);
+		doPost(req, resp);
+//		Redirect to login page
+	}
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//		System.out.println("login post");
+
+		UserInfo user = new UserInfo("", "");
+
+		// Get user name, password → set userInfo
+		String userName = req.getParameter("user");
+		user.setUserName(userName);
+		user.setPassword(req.getParameter("password"));
+
+		// confirm to DB (connect, select)
+		int countUser = 0;
+		String url = "jdbc:mysql://localhost:3307/project_1";
+		String user_db = "trang";
+		String password = "123456789";
+		String sql = "SELECT * FROM project_1.user WHERE user_name=? AND password=? ;";
+		try {
+            
+			Class.forName("com.mysql.cj.jdbc.Driver"); 
+			Connection conn = DriverManager.getConnection(url, user_db, password);
+			PreparedStatement ps = conn.prepareStatement(sql);
+			
+            ps.setString(1, user.getUserName());
+            ps.setString(2, user.getPassword());
+            
+            try(ResultSet rs = ps.executeQuery()){
+                while (rs.next()) {
+                	countUser = countUser + 1;
+                	System.out.println(rs.getInt("id"));
+                	System.out.println(rs.getString("user_name"));
+    				System.out.println(rs.getString("password"));
+                }           
+            };
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            System.out.println("confirm to DB finish");
+        }
+		
+		if (countUser > 0) {
+//			OK: 
+//	        set session 
+
+//			redirect to main
+//			String contextPath = req.getContextPath();
+			resp.sendRedirect("view/main.html");
+		} else {
+//			NG:
+//			error message
+//			back to login
+			resp.sendRedirect("login.html");
+		}
+
+	}
+
+}
