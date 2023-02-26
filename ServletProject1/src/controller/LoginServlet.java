@@ -65,21 +65,17 @@ public class LoginServlet extends HttpServlet {
             e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            System.out.println("confirm to DB finish");
         }
 		
 		if (countUser > 0) {
-//			OK: 
-//	        set session 
-
-//			redirect to main
-//			String contextPath = req.getContextPath();
-			resp.sendRedirect("view/main.html");
+			// OK: 
+			System.out.println("login success");
+			// redirect to main
+			resp.sendRedirect("main");
 		} else {
-//			NG:
-//			error message
-//			back to login
+			// NG:
+			System.out.println("login failure");
+			// back to login (error_message)
 			resp.sendRedirect("login.html");
 		}
 
