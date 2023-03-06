@@ -21,20 +21,18 @@ public class LoginServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		super.doGet(req, resp);
-		doPost(req, resp);
+		System.out.println("login trang heo doGet");
 //		Redirect to login page
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//		System.out.println("login post");
-
-		UserInfo user = new UserInfo("", "");
+		
+		UserInfo user = new UserInfo();
 
 		// Get user name, password → set userInfo
-		String userName = req.getParameter("user");
+		String userName = req.getParameter("user-name");
 		user.setUserName(userName);
 		user.setPassword(req.getParameter("password"));
 
@@ -56,9 +54,6 @@ public class LoginServlet extends HttpServlet {
             try(ResultSet rs = ps.executeQuery()){
                 while (rs.next()) {
                 	countUser = countUser + 1;
-                	System.out.println(rs.getInt("id"));
-                	System.out.println(rs.getString("user_name"));
-    				System.out.println(rs.getString("password"));
                 }           
             };
         } catch (SQLException e) {

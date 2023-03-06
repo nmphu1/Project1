@@ -5,9 +5,7 @@ public class UserInfo {
 	public String userName;
 	private String password;
 
-	public UserInfo(String userName, String password) {
-		this.userName = userName;
-		this.password = password;
+	public UserInfo() {
 	}
 
 	public String getUserName() {
