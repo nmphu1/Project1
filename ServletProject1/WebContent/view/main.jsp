@@ -20,7 +20,7 @@
 		<div class="shain">社員一覧</div>
 
 		<button class="my-btn my-btn-logout">ログアウト</button>
-		<button class="my-btn my-btn-insert">追加</button>
+		<a href="http://localhost:8080/ServletProject1/insert" class="my-btn my-btn-insert">追加</a>
 	</div>
 
 	<br>
