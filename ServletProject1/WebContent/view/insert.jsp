@@ -8,7 +8,7 @@
 <body>
     <i class="glyphicon glyphicon-user"></i>
     <div class="header">会社員管理システム</div>
-    <div class="shain">社員追加/編集</div>
+    <div class="shain">社員追加</div>
     <form action= "insert" method = "post">
         <label for="staff-name">名前：</label>
         <br>

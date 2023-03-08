@@ -2,9 +2,7 @@
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="model.StaffInfo"%>
 <!DOCTYPE html>
-
 <html lang="ja">
-
 <head>
 <meta charset="UTF-8" />
 <title>会社員管理システム</title>
@@ -46,8 +44,8 @@
 			<td><%=staff.getPosition()%></td>
 			<td><%=staff.getMarks()%></td>
 			<td>
-				<button class="sua ">編集</button>
-				<button class="xoa ">削除</button>
+			<a href="/ServletProject1/update/?id=<%=staff.getId()%>" class="my-btn sua">編集</a>
+			<a href="/ServletProject1/delete" class="my-btn xoa">削除</a>
 			</td>
 		</tr>
 		<%
