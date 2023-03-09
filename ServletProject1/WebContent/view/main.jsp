@@ -17,8 +17,8 @@
 	<div>
 		<div class="shain">社員一覧</div>
 
-		<button class="my-btn my-btn-logout">ログアウト</button>
-		<a href="http://localhost:8080/ServletProject1/insert" class="my-btn my-btn-insert">追加</a>
+		<a href="/ServletProject1" class="my-btn my-btn-logout">ログアウト</a>
+		<a href="/ServletProject1/insert" class="my-btn my-btn-insert">追加</a>
 	</div>
 
 	<br>
@@ -45,7 +45,7 @@
 			<td><%=staff.getMarks()%></td>
 			<td>
 			<a href="/ServletProject1/update/?id=<%=staff.getId()%>" class="my-btn sua">編集</a>
-			<a href="/ServletProject1/delete" class="my-btn xoa">削除</a>
+			<a href="/ServletProject1/delete/?id=<%=staff.getId()%>" class="my-btn xoa">削除</a>
 			</td>
 		</tr>
 		<%
